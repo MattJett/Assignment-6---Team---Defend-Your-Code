@@ -1,0 +1,24 @@
+<docs>
+  <members name="launcher">
+    <Launcher>
+      <summary>
+        This is the launcher of the program, contains the <c>Main()</c> method.
+        Opens and writes the user's inputs to the file. Also, displays file's current contents.
+      </summary>
+      <remarks>
+        <para>This class will hold the file name the user inputted.</para>
+        <para>This class will also write the following user inputs to the file...</para>
+        <list type="bullet">
+          <item>
+            <term>Name</term>
+            <description>The saved inputted data of user's first name, then last name.</description>
+          </item>
+          <item>
+            <term>2 Integers</term>
+            <description>User inputs </description>
+          </item>
+        </list>
+      </remarks>
+    </Launcher>
+  </members>
+</docs>
