@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AS6-DefendYourCode", "AS6-DefendYourCode\AS6-DefendYourCode.csproj", "{8FF0B0A8-F98E-41C0-B97D-55134E7879F3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8FF0B0A8-F98E-41C0-B97D-55134E7879F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FF0B0A8-F98E-41C0-B97D-55134E7879F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FF0B0A8-F98E-41C0-B97D-55134E7879F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FF0B0A8-F98E-41C0-B97D-55134E7879F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {47C7FBC5-7FF8-4FCC-9B0E-AAFD911C8D75}
+	EndGlobalSection
+EndGlobal
