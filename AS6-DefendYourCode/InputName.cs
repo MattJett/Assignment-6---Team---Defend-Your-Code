@@ -17,21 +17,41 @@ namespace AS6_DefendYourCode
             return Console.ReadLine();
         }
 
+        //public void Prompt()
+        //{
+        //    try
+        //    {
+        //        Console.Write("\nEnter First Name: ");
+        //        FirstName = ReadLine().Trim();
+        //        Console.Write("\nEnter Last Name: ");
+        //        LastName = ReadLine().Trim();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine("There was an error in your name input: ");
+        //        Console.WriteLine(e);
+        //        Prompt();
+        //    }
+        //}
+
+        // this way we can test from file by calling IsValidFirstAndLastName method.
         public void Prompt()
         {
-            try
-            {
-                Console.Write("\nEnter First Name: ");
-                FirstName = ReadLine().Trim();
-                Console.Write("\nEnter Last Name: ");
-                LastName = ReadLine().Trim();
-            }
-            catch (Exception e)
+            Console.Write("\nEnter First Name: ");
+            FirstName = ReadLine().Trim();
+            Console.Write("\nEnter Last Name: ");
+            LastName = ReadLine().Trim();
+            if(!IsValidFirstAndLastName(FirstName, LastName))
             {
                 Console.WriteLine("There was an error in your name input: ");
-                Console.WriteLine(e);
                 Prompt();
             }
         }
+
+        public bool IsValidFirstAndLastName(string first, string last)
+        {
+            return true;
+        }
+
     }
 }
