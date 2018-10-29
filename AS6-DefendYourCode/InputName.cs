@@ -5,10 +5,10 @@ namespace AS6_DefendYourCode
 {
     internal class InputName
     {
-        private const int READLINE_BUFFER_SIZE = 50;
+        private const int READLINE_BUFFER_SIZE = 50; // TODO: test to see if we need 51 or 50?
 
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
+        internal string FirstName { get; private set; }
+        internal string LastName { get; private set; }
 
         private static string ReadLine()
         {
@@ -17,7 +17,7 @@ namespace AS6_DefendYourCode
             return Console.ReadLine();
         }
 
-        public void Prompt()
+        internal void Prompt()
         {
             try
             {
@@ -25,6 +25,7 @@ namespace AS6_DefendYourCode
                 FirstName = ReadLine().Trim();
                 Console.Write("\nEnter Last Name: ");
                 LastName = ReadLine().Trim();
+                // test ask Tom if needed for regex?
                 if (!IsValidFirstAndLastName(FirstName, LastName)) throw new Exception();
             }
             catch (Exception e)
@@ -35,6 +36,7 @@ namespace AS6_DefendYourCode
             }
         }
 
+        // test
         public bool IsValidFirstAndLastName(string first, string last)
         {
             return true;

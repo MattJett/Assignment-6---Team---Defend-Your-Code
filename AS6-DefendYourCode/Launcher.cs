@@ -8,17 +8,16 @@ namespace AS6_DefendYourCode
 {
     public class Launcher
     {
-        public static Dictionary<string, List<string>> _dictionary;
+        private static Dictionary<string, List<string>> _dictionary;
 
         public static void Main(params string[] args)
         {
+            // test
             _dictionary = new Dictionary<string, List<string>>();
-            Console.WriteLine(Directory.GetCurrentDirectory());
-            Console.WriteLine(Directory.GetCurrentDirectory());
             InitializeTestInputs();
             TestInputFile();
 
-            //PromptUser();
+            PromptUser();
         }
 
         private static void PromptUser() 
@@ -33,12 +32,16 @@ namespace AS6_DefendYourCode
 
             InputFileNameIO inputFileNameIO = new InputFileNameIO();
             inputFileNameIO.Prompt();
-            FileStream file = inputFileNameIO.InputFileName;
+            // test
 
+            inputFileNameIO.WriteTo(inputName, inputInteger);
+            //var writer = new StreamWriter(file);
+            //writer.WriteLine(inputName.FirstName)
             InputPassword inputPassword = new InputPassword();
             inputPassword.Prompt();
         }
 
+        // test
         private static void InitializeTestInputs()
         {
             using (var reader = new StreamReader( "..\\..\\..\\input.txt"))
@@ -62,6 +65,7 @@ namespace AS6_DefendYourCode
             }
         }
 
+        // test
         private static void TestInputFile()
         {
             InputName inputName = new InputName();

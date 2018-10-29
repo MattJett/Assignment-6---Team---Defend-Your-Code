@@ -1,15 +1,17 @@
 ﻿using System;
 using System.IO;
+using System.Numerics;
 
 namespace AS6_DefendYourCode
 {
-    public class InputFileNameIO
+    internal class InputFileNameIO
     {
-        public FileStream InputFileName { get; private set; }
-        public FileStream OutputFileName { get; private set; }
+        internal FileStream InputFileName { get; private set; }
+        internal FileStream OutputFileName { get; private set; }
 
-        public void Prompt()
+        internal void Prompt()
         {
+            // TODO: Limit file extension type and directory location!
             try
             {
                 Console.Write("\nEnter Input File Name: ");
@@ -22,6 +24,36 @@ namespace AS6_DefendYourCode
                 Console.WriteLine("There was an error in your file input: ");
                 Console.WriteLine(e);
                 Prompt();
+            }
+        }
+
+        internal void WriteTo(InputName name, InputInteger integer)
+        {
+            using (var stream = new StreamWriter("..\\..\\..\\" + OutputFileName))
+            {
+                try
+                {
+                    stream.WriteLine("{0}, {1}\nSum:{2}\nProduct:{3}\n", new object[]{name.LastName, name.FirstName, integer.Sum(), integer.Multiply()});
+                }
+                catch (IOException)
+                {
+                    throw new IOException(); // TODO: fix?
+                }
+            }  
+        }
+
+        internal void ReadFrom()
+        {
+            using (var stream = new StreamReader("..\\..\\..\\" + InputFileName))
+            {
+                try
+                {
+                    Console.WriteLine(stream.ReadLine());
+                }
+                catch (IOException)
+                {
+                    throw new IOException(); // TODO: fix?
+                }
             }
         }
     }

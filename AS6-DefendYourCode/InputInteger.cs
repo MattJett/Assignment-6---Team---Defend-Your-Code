@@ -5,10 +5,10 @@ namespace AS6_DefendYourCode
 {
     internal class InputInteger
     {
-        public BigInteger Num1 { get; private set; }
-        public BigInteger Num2 { get; private set; }
+        internal BigInteger Num1 { get; private set; }
+        internal BigInteger Num2 { get; private set; }
 
-        public void Prompt()
+        internal void Prompt()
         {
             try
             {
@@ -25,13 +25,13 @@ namespace AS6_DefendYourCode
             } 
         }
 
-        public string Sum()
+        internal string Sum()
         {
             // TODO: make sure its not null
             return BigInteger.Add(Num1, Num2).ToString();
         }
 
-        public string Multiply()
+        internal string Multiply()
         {
             // TODO: make sure its not null
             return BigInteger.Multiply(Num1, Num2).ToString();
