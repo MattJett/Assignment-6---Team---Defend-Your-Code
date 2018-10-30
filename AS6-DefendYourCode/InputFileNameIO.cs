@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Numerics;
+using System.Text.RegularExpressions;
 
 namespace AS6_DefendYourCode
 {
     internal class InputFileNameIO
     {
-        //internal FileStream InputFileName { get; private set; }
-        //internal FileStream OutputFileName { get; private set; }
+
         internal string InputFileName { get; private set; }
         internal string OutputFileName { get; private set; }
+        private List<string> _originalInput = new List<string>();
 
         internal void Prompt()
         {
@@ -19,13 +20,17 @@ namespace AS6_DefendYourCode
             {
                 Console.Write("\nEnter Input File Name: ");
                 InputFileName = Console.ReadLine().Trim();
+                if (!TestPrompt(InputFileName)) throw new Exception("Input file incorrect format.");
+
                 Console.Write("\nEnter Output File Name: ");
                 OutputFileName = Console.ReadLine().Trim();
+                if (!TestPrompt(OutputFileName)) throw new Exception("Output file incorrect format.");
             }
             catch (Exception e)
             {
                 Console.WriteLine("There was an error in your file input: ");
                 Console.WriteLine(e);
+                Console.WriteLine("Only .txt files in this directory are accepted, example input: abc.txt");
                 Prompt();
             }
         }
@@ -33,45 +38,41 @@ namespace AS6_DefendYourCode
         // TODO: Read input file and then go thru it and print it on the output file
         internal void WriteTo(InputName name, InputInteger integer)
         {
-            //FileStream fout = new FileStream("..\\..\\..\\" + OutputFileName, FileMode.OpenOrCreate, FileAccess.Write);
-            using (var stream = new StreamWriter(new FileStream("..\\..\\..\\" + OutputFileName, FileMode.OpenOrCreate, FileAccess.Write)))
+            SaveOriginalInputFileContent();
+            using (var stream = new StreamWriter("..\\..\\..\\" + OutputFileName))
             {
                 try
                 {
                     stream.WriteLine("{0}, {1}\nSum: {2}\nProduct: {3}", new object[] {
                         name.LastName, name.FirstName, integer.Sum(), integer.Multiply()
                     });
-                    stream.Close();
-                    WriteFromInput();
+                    _originalInput.ForEach(s => stream.WriteLine(s));
                 }
-                catch (IOException)
+                catch (Exception)
                 {
-                    throw new IOException(); // TODO: fix?
+                    Console.WriteLine("There was an issue writing Files. Lets pick 2 new files: ");
+                    Prompt();
+                    throw new IOException(); // TODO: fix? #HALF DONE????
                 }
             }
         }
 
-        private void WriteFromInput() 
+        private void SaveOriginalInputFileContent() 
         {
-            List<string> result = new List<string>();
             using (var reader = new StreamReader("..\\..\\..\\" + InputFileName))
             {
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    result.Add(line);
+                    _originalInput.Add(line);
                 }
-            }
-            using (StreamWriter writer = File.AppendText("..\\..\\..\\" + OutputFileName))
-            {
-                result.ForEach(s => writer.WriteLine(s));
             }
         }
         
-        // TODO: this right her ewill check if its a txt, and location. (like how big integer class was "supposed" to be)
+        // TODO: this right her ewill check if its a txt, and location. (like how big integer class was "supposed" to be) #DONE
         internal bool TestPrompt(string s)
         {
-            return true;
+            return Regex.IsMatch(s, "^([a-z]+.txt)$");
         }
     }
 }

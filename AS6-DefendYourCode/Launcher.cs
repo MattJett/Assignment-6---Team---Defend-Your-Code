@@ -20,7 +20,6 @@ namespace AS6_DefendYourCode
             _testDictionary = new Dictionary<string, List<string>>();
             //TestInitializeInputs();
             //TestInputFile();
-
             PromptUser();
             WriteResultToFile();
         }
@@ -39,8 +38,6 @@ namespace AS6_DefendYourCode
         {
             _inputFileNameIO.WriteTo(_inputName, _inputInteger);
         }
-
-
 
 
         #region Testing helper method

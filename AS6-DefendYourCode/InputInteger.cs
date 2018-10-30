@@ -27,13 +27,17 @@ namespace AS6_DefendYourCode
 
         internal string Sum()
         {
-            // TODO: make sure its not null
+            // TODO: make sure its not null #DONE
+            if (this == null || Num1 == null || Num2 == null)
+                Prompt();
             return BigInteger.Add(Num1, Num2).ToString();
         }
 
         internal string Multiply()
         {
-            // TODO: make sure its not null
+            // TODO: make sure its not null #DONE
+            if (this == null || Num1 == null || Num2 == null)
+                Prompt();
             return BigInteger.Multiply(Num1, Num2).ToString();
         }
 

@@ -1,5 +1,7 @@
 ﻿using System.IO;
 using System;
+using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace AS6_DefendYourCode
 {
@@ -21,11 +23,12 @@ namespace AS6_DefendYourCode
         {
             try
             {
+                Console.Write("\nAccepting all names, because every name is unique!");
                 Console.Write("\nEnter First Name: ");
                 FirstName = ReadLine().Trim();
                 Console.Write("\nEnter Last Name: ");
                 LastName = ReadLine().Trim();
-                // test ask Tom if needed for regex?
+                // test ask Tom if needed for regex? - i did for error checking. #DONE
                 if (!TestPrompt(FirstName, LastName)) throw new Exception();
             }
             catch (Exception e)
@@ -36,10 +39,11 @@ namespace AS6_DefendYourCode
             }
         }
 
-        // test
-        public bool TestPrompt(string first, string last)
+        // TODO: Change to private when done testing.
+        internal bool TestPrompt(string first, string last)
         {
-            return true;
+            return Enumerable.Range(1, 50).Contains(first.Length) &&
+                Enumerable.Range(1, 50).Contains(last.Length);
         }
 
     }

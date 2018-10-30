@@ -46,7 +46,7 @@ namespace AS6_DefendYourCode
             }
             else
             {
-                throw new Exception(); // TODO: do more here?
+                throw new Exception("Secure Password issues."); // TODO: do more here?
             }
         }
 

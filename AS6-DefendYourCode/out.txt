@@ -1,0 +1,6 @@
+b-, a
+Sum: 20
+Product: -44
+a
+b
+c
