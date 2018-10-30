@@ -1,6 +1,6 @@
-b-, a
-Sum: 20
-Product: -44
+aslkdjf, askljf
+Sum: 2
+Product: 1
 a
 b
 c

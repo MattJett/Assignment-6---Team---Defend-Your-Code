@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Numerics;
 
 namespace AS6_DefendYourCode
@@ -7,11 +8,14 @@ namespace AS6_DefendYourCode
     {
         internal BigInteger Num1 { get; private set; }
         internal BigInteger Num2 { get; private set; }
+        internal List<string> errors { get; private set; }
 
         internal void Prompt()
         {
             try
             {
+                if (errors == null)
+                    errors = new List<string>();
                 Console.Write("\nEnter First Number: ");
                 Num1 = BigInteger.Parse(Console.ReadLine().Trim());
                 Console.Write("\nEnter Second Number: ");
@@ -21,6 +25,7 @@ namespace AS6_DefendYourCode
             {
                 Console.WriteLine("There was an error in your integer input: ");
                 Console.WriteLine(e);
+                errors.Add("InputInteger - Prompt() " + e.ToString());
                 Prompt();
             }
         }

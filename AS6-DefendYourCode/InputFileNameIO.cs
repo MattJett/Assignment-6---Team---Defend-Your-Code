@@ -12,12 +12,15 @@ namespace AS6_DefendYourCode
         internal string InputFileName { get; private set; }
         internal string OutputFileName { get; private set; }
         private List<string> _originalInput = new List<string>();
+        internal List<string> errors { get; private set; }
 
         internal void Prompt()
         {
             // TODO: Limit file extension type and directory location!
             try
             {
+                if (errors == null)
+                    errors = new List<string>();
                 Console.Write("\nEnter Input File Name: ");
                 InputFileName = Console.ReadLine().Trim();
                 if (!TestPrompt(InputFileName)) throw new Exception("Input file incorrect format.");
@@ -31,6 +34,7 @@ namespace AS6_DefendYourCode
                 Console.WriteLine("There was an error in your file input: ");
                 Console.WriteLine(e);
                 Console.WriteLine("Only .txt files in this directory are accepted, example input: abc.txt");
+                errors.Add("InputFileNameIO - Prompt() " + e.ToString());
                 Prompt();
             }
         }
@@ -48,9 +52,10 @@ namespace AS6_DefendYourCode
                     });
                     _originalInput.ForEach(s => stream.WriteLine(s));
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     Console.WriteLine("There was an issue writing Files. Lets pick 2 new files: ");
+                    errors.Add("InputFileNameIO - WriteTo(InputName name, InputInteger integer) " + e.ToString());
                     Prompt();
                     throw new IOException(); // TODO: fix? #HALF DONE????
                 }

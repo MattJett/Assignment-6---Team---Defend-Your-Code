@@ -10,8 +10,9 @@ namespace AS6_DefendYourCode
     internal class InputPassword
     {
         private const int READLINE_BUFFER_SIZE = 12; // TODO: see if we need 13 or 12?
-    
         internal string HashedPassword { get; private set; }
+        internal List<string> errors { get; private set; }
+
 
         private static string ReadLine()
         {
@@ -24,6 +25,8 @@ namespace AS6_DefendYourCode
         {
             try
             {
+                if (errors == null)
+                    errors = new List<string>();
                 Console.Write("\nEnter A Password (must be between 6-12 characters long): ");
                 HashedPassword = SecurePassword(ReadLine().Trim());
             }
@@ -31,6 +34,7 @@ namespace AS6_DefendYourCode
             {
                 Console.WriteLine("There was an error in your password input: ");
                 Console.WriteLine(e);
+                errors.Add("InputPassword - Prompt() " + e.ToString());
                 Prompt();
             }
         }

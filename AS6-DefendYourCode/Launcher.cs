@@ -22,6 +22,7 @@ namespace AS6_DefendYourCode
             //TestInputFile();
             PromptUser();
             WriteResultToFile();
+            WriteErrorsToFile();
         }
 
 
@@ -39,6 +40,17 @@ namespace AS6_DefendYourCode
             _inputFileNameIO.WriteTo(_inputName, _inputInteger);
         }
 
+        private static void WriteErrorsToFile()
+        {
+            using (var write = new StreamWriter("..\\..\\..\\error.txt"))
+            {
+                _inputName.errors.ForEach(err => write.WriteLine(err));
+                _inputInteger.errors.ForEach(err => write.WriteLine(err));
+                _inputFileNameIO.errors.ForEach(err => write.WriteLine(err));
+                _inputPassword.errors.ForEach(err => write.WriteLine(err));
+
+            }
+        }
 
         #region Testing helper method
         // test
