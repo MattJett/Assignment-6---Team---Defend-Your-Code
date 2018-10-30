@@ -14,11 +14,12 @@
             <description>The saved inputted data of user's first name, then last name.</description>
           </item>
           <item>
-            <term>2 Integers</term>
-            <description>User inputs </description>
+            <term>Sum and Product</term>
+            <description>The sum and product of both integer the user inputted.</description>
           </item>
         </list>
       </remarks>
     </Launcher>
+    
   </members>
 </docs>
