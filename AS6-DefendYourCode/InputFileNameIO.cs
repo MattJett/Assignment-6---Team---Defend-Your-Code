@@ -74,10 +74,12 @@ namespace AS6_DefendYourCode
             }
         }
         
-        // TODO: this right her ewill check if its a txt, and location. (like how big integer class was "supposed" to be) #DONE
-        internal bool TestPrompt(string s)
+        // DONE: this right her ewill check if its a txt, and location. (like how big integer class was "supposed" to be)
+        // FIXED: adjusted regex pattern to allow decimals and alphas, and a few special characters. Also, escaped the "." in .txt.
+        // TODO: maybe throw error that lets user know whats legal, like which special characters are legal in invalid input.
+        internal bool TestPrompt(string fileName)
         {
-            return Regex.IsMatch(s, "^([a-z]+.txt)$");
+            return Regex.IsMatch(fileName, @"^[\w!)( -]+\.txt$");
         }
     }
 }

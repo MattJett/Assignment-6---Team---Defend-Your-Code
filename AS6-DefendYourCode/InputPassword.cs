@@ -29,6 +29,7 @@ namespace AS6_DefendYourCode
                     errors = new List<string>();
                 Console.Write("\nEnter A Password (must be between 6-12 characters long): ");
                 HashedPassword = SecurePassword(ReadLine().Trim());
+                // store password 
             }
             catch (Exception e)
             {
@@ -41,7 +42,7 @@ namespace AS6_DefendYourCode
 
         private string SecurePassword(string input)
         {
-            if (new Regex(@"^[\w\!\@\#\$\%\^\&\*\)\(\-\+\=\]\[\}\{\]\|\>\<\?\~\`]{6,12}$").IsMatch(input))
+            if (new Regex(@"^[\w\!\@\#\$\%\*\)\(\-\+\=\_\]\[\}\{\|\?\~\`]{6,12}$").IsMatch(input))
             {
                 byte[] password = Encoding.UTF8.GetBytes(input);
                 byte[] salt = GenerateSalt();
