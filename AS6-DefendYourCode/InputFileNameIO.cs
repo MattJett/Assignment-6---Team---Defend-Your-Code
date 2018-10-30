@@ -43,6 +43,11 @@ namespace AS6_DefendYourCode
         internal void WriteTo(InputName name, InputInteger integer)
         {
             SaveOriginalInputFileContent();
+            if (!File.Exists("..\\..\\..\\" + OutputFileName))
+            {
+                FileStream fs = File.Create("..\\..\\..\\" + OutputFileName);
+                fs.Close();
+            }
             using (var stream = new StreamWriter("..\\..\\..\\" + OutputFileName))
             {
                 try
@@ -64,6 +69,11 @@ namespace AS6_DefendYourCode
 
         private void SaveOriginalInputFileContent() 
         {
+            if (!File.Exists("..\\..\\..\\" + InputFileName))
+            {
+                FileStream fs = File.Create("..\\..\\..\\" + InputFileName);
+                fs.Close();
+            }
             using (var reader = new StreamReader("..\\..\\..\\" + InputFileName))
             {
                 string line;
