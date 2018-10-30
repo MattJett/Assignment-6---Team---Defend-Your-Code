@@ -1,0 +1,7 @@
+﻿hung
+auduong
+1
+2
+in.txt
+out.txt
+abcdefg

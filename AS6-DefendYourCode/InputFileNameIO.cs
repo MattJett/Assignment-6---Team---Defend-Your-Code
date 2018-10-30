@@ -15,9 +15,12 @@ namespace AS6_DefendYourCode
             try
             {
                 Console.Write("\nEnter Input File Name: ");
-                InputFileName = new FileStream(Console.ReadLine(), FileMode.OpenOrCreate, FileAccess.Read);
+                InputFileName = new FileStream("..\\..\\..\\" + Console.ReadLine(), FileMode.OpenOrCreate, FileAccess.Read);
+                //InputFileName.Close();
                 Console.Write("\nEnter Output File Name: ");
-                OutputFileName = new FileStream(Console.ReadLine(), FileMode.OpenOrCreate, FileAccess.Write);
+                OutputFileName = new FileStream("..\\..\\..\\" + Console.ReadLine(), FileMode.OpenOrCreate, FileAccess.Write);
+                InputFileName.Close();
+                OutputFileName.Close();
             }
             catch (Exception e)
             {
@@ -27,19 +30,20 @@ namespace AS6_DefendYourCode
             }
         }
 
+        // TODO: Read input file and then go thru it and print it on the output file
         internal void WriteTo(InputName name, InputInteger integer)
         {
-            using (var stream = new StreamWriter("..\\..\\..\\" + OutputFileName))
+            try
             {
-                try
+                using (var stream = new StreamWriter(OutputFileName.Name))
                 {
-                    stream.WriteLine("{0}, {1}\nSum:{2}\nProduct:{3}\n", new object[]{name.LastName, name.FirstName, integer.Sum(), integer.Multiply()});
+                    stream.WriteLine("{0}, {1}\nSum: {2}\nProduct: {3}\n", new object[] { name.LastName, name.FirstName, integer.Sum(), integer.Multiply() });
                 }
-                catch (IOException)
-                {
-                    throw new IOException(); // TODO: fix?
-                }
-            }  
+            }
+            catch (IOException)
+            {
+                throw new IOException(); // TODO: fix?
+            }
         }
 
         internal void ReadFrom()

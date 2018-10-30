@@ -14,11 +14,12 @@ namespace AS6_DefendYourCode
         {
             // test
             _testDictionary = new Dictionary<string, List<string>>();
-            TestInitializeInputs();
-            TestInputFile();
+            //TestInitializeInputs();
+            //TestInputFile();
 
-            //PromptUser();
+            PromptUser();
         }
+
 
         private static void PromptUser() 
         {
