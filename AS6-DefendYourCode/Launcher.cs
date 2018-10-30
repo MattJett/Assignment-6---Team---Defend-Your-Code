@@ -80,18 +80,28 @@ namespace AS6_DefendYourCode
                 foreach (var key in _dictionary.Keys)
                 {
                     write.WriteLine("\n" + key + ": ");
-                    foreach (var value in _dictionary[key])
+                    //foreach (var value in _dictionary[key])
+                    //{
+                    //    switch (key)
+                    //    {
+                    //        case "a":
+                    //            string[] name = value.Split(" ");
+                    //            (inputName.IsValidFirstAndLastName(name[0], name[1]) ? valid : failed).Add(value);
+                    //            break;
+                    //        case "b":
+                    //            break;
+                    //    }
+                    //}
+                    var array = _dictionary[key].ToArray();
+                    for(int i = 1; i < array.Length; i += 2)
                     {
-                        switch (key)
+                        switch(key)
                         {
                             case "a":
-                                string[] name = value.Split(" ");
-                                // checks first name and last name delimited by white spaces. but will add 
-                                // the original to the list
-                                (inputName.IsValidFirstAndLastName(name[0], name[1]) ? valid : failed).Add(value);
                                 break;
                         }
                     }
+
                     write.WriteLine("Valid test cases: ");
                     valid.ForEach(s => write.WriteLine("\t" + s));
                     write.WriteLine("Failed test cases: ");
