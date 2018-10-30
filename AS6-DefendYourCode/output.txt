@@ -4,10 +4,41 @@ a:
 Valid test cases: 
 	hung auduong
 	matt jett
-	first    name
+	first name
 	first-name last'name
 Failed test cases: 
 
 b: 
 Valid test cases: 
+	1
+	2
+	33
+	44
 Failed test cases: 
+	asdf
+	asdf
+	55 5
+	66 6
+
+c: 
+Valid test cases: 
+	input.txt
+	\output.txt
+	input
+	asdlkf
+	234
+	input.com
+	read. txt
+	.txt
+	--.txt
+	abc.abc.txt
+	..\..\test.txt
+Failed test cases: 
+
+d: 
+Valid test cases: 
+	abcedefg
+	abc123
+Failed test cases: 
+	g
+	zzzzzzzzzzzzzzz

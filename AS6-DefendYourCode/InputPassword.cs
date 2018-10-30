@@ -68,5 +68,26 @@ namespace AS6_DefendYourCode
                 return hmac.ComputeHash(password);
             }
         }
+
+        public bool TestPrompt(string s)
+        {
+            return TestSecurePassword(s);
+        }
+
+        private bool TestSecurePassword(string input)
+        {
+            if (new Regex(@"^[\w\!\@\#\$\%\^\&\*\)\(\-\+\=\]\[\}\{\]\|\>\<\?\~\`]{6,12}$").IsMatch(input))
+            {
+                byte[] password = Encoding.UTF8.GetBytes(input);
+                byte[] salt = GenerateSalt();
+                byte[] hash = GenerateSaltedHash(password, salt);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

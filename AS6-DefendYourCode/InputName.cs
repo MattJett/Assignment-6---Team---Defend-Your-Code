@@ -26,7 +26,7 @@ namespace AS6_DefendYourCode
                 Console.Write("\nEnter Last Name: ");
                 LastName = ReadLine().Trim();
                 // test ask Tom if needed for regex?
-                if (!IsValidFirstAndLastName(FirstName, LastName)) throw new Exception();
+                if (!TestPrompt(FirstName, LastName)) throw new Exception();
             }
             catch (Exception e)
             {
@@ -37,7 +37,7 @@ namespace AS6_DefendYourCode
         }
 
         // test
-        public bool IsValidFirstAndLastName(string first, string last)
+        public bool TestPrompt(string first, string last)
         {
             return true;
         }

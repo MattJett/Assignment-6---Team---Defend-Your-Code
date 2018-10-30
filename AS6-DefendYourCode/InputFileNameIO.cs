@@ -56,5 +56,12 @@ namespace AS6_DefendYourCode
                 }
             }
         }
+        
+        // TODO: this right her ewill check if its a txt, and location. (like how big integer class was "supposed" to be)
+        internal bool TestPrompt(string s)
+        {
+            return true;
+        }
+
     }
 }

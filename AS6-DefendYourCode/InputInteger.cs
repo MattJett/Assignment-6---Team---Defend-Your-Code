@@ -22,7 +22,7 @@ namespace AS6_DefendYourCode
                 Console.WriteLine("There was an error in your integer input: ");
                 Console.WriteLine(e);
                 Prompt();
-            } 
+            }
         }
 
         internal string Sum()
@@ -35,6 +35,21 @@ namespace AS6_DefendYourCode
         {
             // TODO: make sure its not null
             return BigInteger.Multiply(Num1, Num2).ToString();
+        }
+
+        //test
+        internal bool TestPrompt(String one, String two)
+        {
+            try
+            {
+                Num1 = BigInteger.Parse(one.Trim());
+                Num2 = BigInteger.Parse(two.Trim());
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

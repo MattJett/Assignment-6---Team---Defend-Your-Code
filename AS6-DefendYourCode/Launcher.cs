@@ -8,16 +8,16 @@ namespace AS6_DefendYourCode
 {
     public class Launcher
     {
-        private static Dictionary<string, List<string>> _dictionary;
+        private static Dictionary<string, List<string>> _testDictionary;
 
         public static void Main(params string[] args)
         {
             // test
-            _dictionary = new Dictionary<string, List<string>>();
-            InitializeTestInputs();
+            _testDictionary = new Dictionary<string, List<string>>();
+            TestInitializeInputs();
             TestInputFile();
 
-            PromptUser();
+            //PromptUser();
         }
 
         private static void PromptUser() 
@@ -42,7 +42,7 @@ namespace AS6_DefendYourCode
         }
 
         // test
-        private static void InitializeTestInputs()
+        private static void TestInitializeInputs()
         {
             using (var reader = new StreamReader( "..\\..\\..\\input.txt"))
             {
@@ -52,14 +52,14 @@ namespace AS6_DefendYourCode
                     if(line.Length == 1 && Regex.IsMatch(line, "[a-f]"))
                     {
                         key = line;
-                        if(!_dictionary.ContainsKey(key))
+                        if(!_testDictionary.ContainsKey(key))
                         {
-                            _dictionary.Add(key, new List<string>());
+                            _testDictionary.Add(key, new List<string>());
                         }
                     }
                     else if (line.Length > 0 && !Regex.IsMatch(line, "^\\s*$"))
                     {
-                        _dictionary[key].Add(line.Trim());
+                        _testDictionary[key].Add(line.Trim());
                     }
                 }
             }
@@ -77,27 +77,36 @@ namespace AS6_DefendYourCode
             using (var write = new StreamWriter("..\\..\\..\\output.txt"))
             {
                 write.WriteLine("Test Results: ");
-                foreach (var key in _dictionary.Keys)
+                foreach (var key in _testDictionary.Keys)
                 {
                     write.WriteLine("\n" + key + ": ");
-                    //foreach (var value in _dictionary[key])
-                    //{
-                    //    switch (key)
-                    //    {
-                    //        case "a":
-                    //            string[] name = value.Split(" ");
-                    //            (inputName.IsValidFirstAndLastName(name[0], name[1]) ? valid : failed).Add(value);
-                    //            break;
-                    //        case "b":
-                    //            break;
-                    //    }
-                    //}
-                    var array = _dictionary[key].ToArray();
-                    for(int i = 1; i < array.Length; i += 2)
+                    var array = _testDictionary[key].ToArray();
+                    for(int i = 0; i < array.Length; i++)
                     {
                         switch(key)
                         {
                             case "a":
+                                i++;
+                                (inputName.TestPrompt(array[i - 1], array[i]) ? valid : failed).Add(array[i - 1] + " " + array[i]);
+                                break;
+                            case "b":
+                                i++;
+                                if(inputInteger.TestPrompt(array[i - 1], array [i]))
+                                {
+                                    valid.Add(array[i - 1]);
+                                    valid.Add(array[i]);
+                                }
+                                else
+                                {
+                                    failed.Add(array[i - 1]);
+                                    failed.Add(array[i]);
+                                }
+                                break;
+                            case "c":
+                                (inputFileNameIO.TestPrompt(array[i]) ? valid : failed).Add(array[i]);
+                                break;
+                            case "d":
+                                (inputPassword.TestPrompt(array[i]) ? valid : failed).Add(array[i]);
                                 break;
                         }
                     }

@@ -1,11 +1,40 @@
 a
 
-hung auduong
-matt jett
-first    name
-first-name last'name
+hung 
+auduong
+matt 
+ jett
+first  
+   name
+first-name
+last'name
 
 b
+asdf
+asdf
+1
+2
+33
+44
+55 5
+66 6
 
+c
+input.txt
+\output.txt
+input
+asdlkf
+234
+input.com
+read. txt
+.txt
+--.txt
+abc.abc.txt
+..\..\test.txt
 
-
+d
+abcedefg
+abc123
+g
+ 
+zzzzzzzzzzzzzzz
