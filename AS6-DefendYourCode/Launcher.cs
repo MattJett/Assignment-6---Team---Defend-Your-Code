@@ -9,6 +9,10 @@ namespace AS6_DefendYourCode
     public class Launcher
     {
         private static Dictionary<string, List<string>> _testDictionary;
+        private static InputName _inputName = new InputName();
+        private static InputInteger _inputInteger = new InputInteger();
+        private static InputFileNameIO _inputFileNameIO = new InputFileNameIO();
+        private static InputPassword _inputPassword = new InputPassword();
 
         public static void Main(params string[] args)
         {
@@ -18,30 +22,28 @@ namespace AS6_DefendYourCode
             //TestInputFile();
 
             PromptUser();
+            WriteResultToFile();
         }
 
 
         private static void PromptUser() 
         {
             Console.WriteLine("Assignment 6: Team - Defend your code");
-
-            InputName inputName = new InputName();
-            inputName.Prompt();
-            
-            InputInteger inputInteger = new InputInteger();
-            inputInteger.Prompt();
-
-            InputFileNameIO inputFileNameIO = new InputFileNameIO();
-            inputFileNameIO.Prompt();
-            // test
-
-            inputFileNameIO.WriteTo(inputName, inputInteger);
-            //var writer = new StreamWriter(file);
-            //writer.WriteLine(inputName.FirstName)
-            InputPassword inputPassword = new InputPassword();
-            inputPassword.Prompt();
+            _inputName.Prompt();
+            _inputInteger.Prompt();
+            _inputFileNameIO.Prompt();
+            _inputPassword.Prompt();
         }
 
+        private static void WriteResultToFile()
+        {
+            _inputFileNameIO.WriteTo(_inputName, _inputInteger);
+        }
+
+
+
+
+        #region Testing helper method
         // test
         private static void TestInitializeInputs()
         {
@@ -121,6 +123,6 @@ namespace AS6_DefendYourCode
                 }
             }
         }
-
+        #endregion
     }
 }

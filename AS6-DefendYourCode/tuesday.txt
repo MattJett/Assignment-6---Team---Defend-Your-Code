@@ -1,0 +1,14 @@
+Jett, Matthew
+Sum: 6
+Product: 9
+
+Jett, Matthew
+Sum: 4
+Product: 4
+Jett, Matthew
+Sum: 6
+Product: 9
+
+Jett, Matthew
+Sum: 4
+Product: 4
