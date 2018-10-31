@@ -6,4 +6,10 @@
     <RootNamespace>AS6_DefendYourCode</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="System">
+      <HintPath>System</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

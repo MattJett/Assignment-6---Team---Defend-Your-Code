@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System;
-using System.Text.RegularExpressions;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -8,7 +7,7 @@ namespace AS6_DefendYourCode
 {
     internal class InputName
     {
-        private const int READLINE_BUFFER_SIZE = 50; // TODO: test to see if we need 51 or 50?
+        private const int READLINE_BUFFER_SIZE = 50;
 
         internal string FirstName { get; private set; }
         internal string LastName { get; private set; }
@@ -41,8 +40,7 @@ namespace AS6_DefendYourCode
             }
         }
 
-        // TODO: Change to private when done testing.
-        internal bool TestPrompt(string first, string last)
+        private bool TestPrompt(string first, string last)
         {
             return Enumerable.Range(1, 50).Contains(first.Length) &&
                 Enumerable.Range(1, 50).Contains(last.Length);

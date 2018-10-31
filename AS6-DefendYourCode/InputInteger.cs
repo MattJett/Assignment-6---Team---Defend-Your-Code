@@ -43,20 +43,5 @@ namespace AS6_DefendYourCode
                 Prompt();
             return BigInteger.Multiply(Num1, Num2).ToString();
         }
-
-        //test
-        internal bool TestPrompt(String one, String two)
-        {
-            try
-            {
-                Num1 = BigInteger.Parse(one.Trim());
-                Num2 = BigInteger.Parse(two.Trim());
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-            return true;
-        }
     }
 }

@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Numerics;
 using System.Text.RegularExpressions;
 
 namespace AS6_DefendYourCode
 {
     internal class InputFileNameIO
     {
-
         internal string InputFileName { get; private set; }
         internal string OutputFileName { get; private set; }
         private List<string> _originalInput = new List<string>();
@@ -16,7 +14,6 @@ namespace AS6_DefendYourCode
 
         internal void Prompt()
         {
-            // TODO: Limit file extension type and directory location!
             try
             {
                 if (Errors == null)
@@ -33,13 +30,12 @@ namespace AS6_DefendYourCode
             {
                 Console.WriteLine("There was an error in your file input: ");
                 Console.WriteLine(e);
-                Console.WriteLine("Only .txt files in this directory are accepted, example input: abc.txt");
+                Console.WriteLine("Only .txt files in this directory are accepted and only use [A-z0-9 or !)( -] are valid characters to use, example input: Abc9!.txt");
                 Errors.Add("InputFileNameIO - Prompt() " + e.ToString());
                 Prompt();
             }
         }
 
-        // TODO: Read input file and then go thru it and print it on the output file
         internal void WriteTo(InputName name, InputInteger integer)
         {
             SaveOriginalInputFileContent();
@@ -62,7 +58,7 @@ namespace AS6_DefendYourCode
                     Console.WriteLine("There was an issue writing Files. Lets pick 2 new files: ");
                     Errors.Add("InputFileNameIO - WriteTo(InputName name, InputInteger integer) " + e.ToString());
                     Prompt();
-                    throw new IOException(); // TODO: fix? #HALF DONE????
+					throw new IOException();
                 }
             }
         }
@@ -76,16 +72,23 @@ namespace AS6_DefendYourCode
             }
             using (var reader = new StreamReader("..\\..\\..\\" + InputFileName))
             {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    _originalInput.Add(line);
-                }
+				try
+				{
+					string line;
+					while ((line = reader.ReadLine()) != null)
+						_originalInput.Add(line);
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine("There was an issue copying content over: ");
+					Errors.Add("InputFileNameIO - SaveOriginalInputFileContent() " + e.ToString());
+					throw new IOException();
+				}
+                
             }
         }
 		
-        // TODO: maybe throw error that lets user know whats legal, like which special characters are legal in invalid input.
-        internal bool TestPrompt(string fileName)
+        private bool TestPrompt(string fileName)
         {
             return Regex.IsMatch(fileName, @"^[\w!)( -]+\.txt$");
         }

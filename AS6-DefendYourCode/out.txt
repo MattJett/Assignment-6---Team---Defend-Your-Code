@@ -1,6 +1,0 @@
-in, a
-Sum: 4
-Product: 4
-a
-b
-c
