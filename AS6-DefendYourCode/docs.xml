@@ -1,25 +1,36 @@
 <docs>
   <members name="launcher">
     <Launcher>
-      <summary>
-        This is the launcher of the program, contains the <c>Main()</c> method.
-        Opens and writes the user's inputs to the file. Also, displays file's current contents.
-      </summary>
-      <remarks>
-        <para>This class will hold the file name the user inputted.</para>
-        <para>This class will also write the following user inputs to the file...</para>
-        <list type="bullet">
-          <item>
-            <term>Name</term>
-            <description>The saved inputted data of user's first name, then last name.</description>
-          </item>
-          <item>
-            <term>Sum and Product</term>
-            <description>The sum and product of both integer the user inputted.</description>
-          </item>
-        </list>
-      </remarks>
+		<summary>
+			This is the launcher of the program, contains the <c>Main()</c> method.
+			Opens and writes the user's inputs to the file.
+		</summary>
+		<remarks>
+			<para>This class has 3 main tasks.</para>
+			<list type="bullet">
+				<item>
+					<term>Prompt User Input</term>
+						<description>Launcher class's <c>Prompt()</c> method will call an instantiation of 
+						InputName, InputInteger, InputFileNameIO, and InputPassword classe's own <c>Prompt()</c>
+						methods. These respective methods ask for user input and stores the inputted data into private
+						member variables in those classes.</description>
+				</item>
+				<item>
+					<term>Write Name with Sum and Product to File</term>
+						<description>Launcher's <c>WriteResultToFile()</c> method calls up InputFileNameIO's
+						<c>WriteTo()</c> method. This method is responsible for opening and writing to the output file the
+						user inputted when prompted. This method writes the last name, then first name the user entered,
+						followed by the sum and product of the two integers the user entered when prompted.
+						This data is written to the beginning of the file moving the rest of the file's contents below this new data.</description>
+				</item>
+				<item>
+					<term>Generate Error Log</term>
+						<description>Launcher's <c>WriteErrorsToFile()</c> method calls each instantiated class's Errors member variable
+						to write the collected errors to a file called error.txt to document running errors. Each new run on the program will
+						override the old error data with the new instance's errors.</description>
+				</item>
+			</list>
+		</remarks>
     </Launcher>
-    
   </members>
 </docs>
