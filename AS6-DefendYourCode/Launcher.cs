@@ -44,10 +44,10 @@ namespace AS6_DefendYourCode
         {
             using (var write = new StreamWriter("..\\..\\..\\error.txt"))
             {
-                _inputName.errors.ForEach(err => write.WriteLine(err));
-                _inputInteger.errors.ForEach(err => write.WriteLine(err));
-                _inputFileNameIO.errors.ForEach(err => write.WriteLine(err));
-                _inputPassword.errors.ForEach(err => write.WriteLine(err));
+                _inputName.Errors.ForEach(err => write.WriteLine(err));
+                _inputInteger.Errors.ForEach(err => write.WriteLine(err));
+                _inputFileNameIO.Errors.ForEach(err => write.WriteLine(err));
+                _inputPassword.Errors.ForEach(err => write.WriteLine(err));
 
             }
         }

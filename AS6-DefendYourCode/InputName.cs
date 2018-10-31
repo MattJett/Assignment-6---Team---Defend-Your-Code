@@ -12,11 +12,10 @@ namespace AS6_DefendYourCode
 
         internal string FirstName { get; private set; }
         internal string LastName { get; private set; }
-        internal List<string> errors { get; private set; }
+        internal List<string> Errors { get; private set; }
 
         private static string ReadLine()
         {
-            // TODO: Test to see if this works
             Console.SetIn(new StreamReader(Console.OpenStandardInput(READLINE_BUFFER_SIZE)));
             return Console.ReadLine();
         }
@@ -25,21 +24,19 @@ namespace AS6_DefendYourCode
         {
             try
             {
-                if(errors == null)
-                    errors = new List<string>();
-                Console.Write("\nAccepting all names, because every name is unique!");
+                if(Errors == null)
+                    Errors = new List<string>();
                 Console.Write("\nEnter First Name: ");
                 FirstName = ReadLine().Trim();
                 Console.Write("\nEnter Last Name: ");
                 LastName = ReadLine().Trim();
-                // test ask Tom if needed for regex? - i did for error checking. #DONE
                 if (!TestPrompt(FirstName, LastName)) throw new Exception("Name length out of bound!");
             }
             catch (Exception e)
             {
                 Console.WriteLine("There was an error in your name input: ");
                 Console.WriteLine(e);
-                errors.Add("InputName - Prompt() " + e.ToString());
+                Errors.Add("InputName - Prompt() " + e.ToString());
                 Prompt();
             }
         }

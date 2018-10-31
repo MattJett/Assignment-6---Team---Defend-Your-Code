@@ -1,0 +1,3 @@
+InputPassword - Prompt() System.Exception: Secure Password issues.
+   at AS6_DefendYourCode.InputPassword.SecurePassword(String input) in C:\Users\serap\Google Drive\School\CSCD 437 - Secure Coding\Assignments\Assignment 6 - Team - Defend Your Code\AS6-DefendYourCode\InputPassword.cs:line 88
+   at AS6_DefendYourCode.InputPassword.Prompt() in C:\Users\serap\Google Drive\School\CSCD 437 - Secure Coding\Assignments\Assignment 6 - Team - Defend Your Code\AS6-DefendYourCode\InputPassword.cs:line 43
