@@ -1,6 +1,6 @@
-aslkdjf, askljf
-Sum: 2
-Product: 1
+in, a
+Sum: 4
+Product: 4
 a
 b
 c

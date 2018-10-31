@@ -32,7 +32,7 @@ namespace AS6_DefendYourCode
             _inputName.Prompt();
             _inputInteger.Prompt();
             _inputFileNameIO.Prompt();
-            _inputPassword.Prompt();
+            _inputPassword.HungPrompt();
         }
 
         private static void WriteResultToFile()
