@@ -1,9 +1,14 @@
 #ifndef MYUTILS_H
 #define MYUTILS_H
+#define _XOPEN_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <regex.h>
+#include <unistd.h>
+#include <crypt.h>
+#include <time.h>
+#include <sys/wait.h>
 
 void strip(char * array);
 
@@ -20,10 +25,10 @@ void getOutput(char * outputName, char * inputName, size_t len);
 void getPassword();
 
 // Validation
-bool isValidName(char * name);
-bool isValidNum(char * num);
-bool isValidFileName(char * fileName);
-bool isValidPassword(char * password);
-
-
+int isValidName(char * name);
+int isValidNum(char * num);
+int isValidFileName(char * fileName);
+int isValidPassword(char * password);
+int regex(char * string, char * test);
+void cleanBuffers(char * buf);
 #endif
