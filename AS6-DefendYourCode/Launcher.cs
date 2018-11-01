@@ -18,7 +18,6 @@ namespace AS6_DefendYourCode
             WriteErrorsToFile();
         }
 
-
         private static void PromptUser() 
         {
             Console.WriteLine("Assignment 6: Team - Defend your code");
