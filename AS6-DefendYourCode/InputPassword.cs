@@ -120,7 +120,7 @@ namespace AS6_DefendYourCode
 				GenerateSalt();
 			using (var hmac = new HMACSHA256(_salt))
 			{
-				return Convert.ToBase64String(hmac.ComputeHash(new UTF8Encoding().GetBytes(password)));
+				return Convert.ToBase64String(hmac.ComputeHash(new UTF8Encoding().GetBytes(password + _salt)));
 			}
 		}
 

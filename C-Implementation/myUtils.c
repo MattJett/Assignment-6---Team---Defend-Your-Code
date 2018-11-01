@@ -91,7 +91,7 @@ long getNum1(){
 }
 
 long getNum2(){
-int valid = -1;
+    int valid = -1;
 	long num = 0;
 	char input[15];
 	char dummy[6];
