@@ -1,6 +1,5 @@
 #include "myUtils.h"
 
-
 void strip(char * array) {
 	if(array == NULL) {
 			perror("array is null");
@@ -70,7 +69,7 @@ void getLname(char * lname, size_t len){
 
 // wants 3 digits. +1 to check minus sign. +1 for \n. +1 for both minus and \n
 //	hard to conceptualize but test it around it maeks sense 
-long getNum1(){
+long getNum1() {
 	int valid = -1;
 	long num = 0;
 	char input[15];
@@ -90,7 +89,7 @@ long getNum1(){
 	return num;
 }
 
-long getNum2(){
+long getNum2() {
     int valid = -1;
 	long num = 0;
 	char input[15];
@@ -98,7 +97,7 @@ long getNum2(){
 	
 	while(valid == -1) {
 		printf("Enter Second Integer (Only digits between -2147483648 to 2147483647)\n");
-		printf("NUm2: ");
+		printf("Num2: ");
 		fgets(dummy, (sizeof(dummy)), stdin);
 		cleanBuffers(dummy);
 		//printf("test num size: %d %s\n", (int)strlen(dummy), dummy);
@@ -110,21 +109,74 @@ long getNum2(){
 	return num;
 }
 
-void getInput(char * inputName, size_t len){
-    
+// TODO: change dummy to input
+void getInputFile(char * inputName, size_t len) {
+	int valid = -1;
+	char input[52];
+	char dummy[8];
+
+	while(valid == -1) {
+		printf("Enter name of text Input file in this directory (Up to 50 characters. Accepting ONLY .txt files AND ONLY letters and numbers)\n");
+		printf("Input File: ");
+		fgets(dummy, (sizeof(dummy)), stdin);
+		cleanBuffers(dummy);
+		printf("test inputname size: %d %s\n", (int)strlen(dummy), dummy);
+		if(isValidFileName(dummy) == 0)
+			valid = 0;
+		else
+			printf("Your file name input is invalid please try again!\n");
+	}
 }
 
-void getOutput(char * outputName, char * inputName, size_t len){
-    
+void getOutputFile(char * outputName, size_t len) {
+	int valid = -1;
+	char input[52];
+	char dummy[8];
+
+	while(valid == -1) {
+		printf("Enter name of text Output file in this directory (Up to 50 characters. Accepting ONLY .txt files AND ONLY letters and numbers)\n");
+		printf("Output File: ");
+		fgets(dummy, (sizeof(dummy)), stdin);
+		cleanBuffers(dummy);
+		printf("test inputname size: %d %s\n", (int)strlen(dummy), dummy);
+		if(isValidFileName(dummy) == 0)
+			valid = 0;
+		else
+			printf("Your file name input is invalid please try again!\n");
+	}
 }
 
-void getPassword(){
-    
+void getPassword() {
+	int valid = -1;
+	char password[13];
+	char passwordReEnter[13];
+	unsigned char salt[SHA256_BLOCK_SIZE/2];
+	unsigned char hash[SHA256_BLOCK_SIZE];
+
+	while(valid == -1) {
+		printf("Enter password (All letters, numbers, and some special characters are allowed, must be between 6-12 characters in length)\n");
+		printf("Password: ");
+		fgets(password, (sizeof(password)), stdin);
+		cleanBuffers(password);
+		//printf("test fname size: %d %s\n", (int)strlen(input), input);
+		if(isValidPassword(password) == 0)
+			valid = 0;
+		else
+			printf("Your contained either too many or too few characters, or an invalid character!\n");
+	}
+
+	// generate salt
+	SHA256_CTX ctx;
+	sha256_init(&ctx);
+	// append salt char[] to password[] make new password
+	// hash new password
+	// write salt and hashedpassword to account.txt file
 }
+
 
 // Validation
 // TODO: change range to 1-50
-int isValidName(char * name){
+int isValidName(char * name) {
 	strip(name);
     size_t size = strlen(name);
 	//printf("test validname size: %d\n", size);
@@ -133,7 +185,7 @@ int isValidName(char * name){
 	return 1;
 }
 
-int isValidNum(char * num){
+int isValidNum(char * num) {
     strip(num);
 	size_t size = strlen(num);
 	//printf("test number size: %d %s\n", size, num);
@@ -142,11 +194,17 @@ int isValidNum(char * num){
 	return 1;
 }
 
-int isValidFileName(char * fileName){
-    
+// TODO: change range to 1-54
+int isValidFileName(char * fileName) {
+	strip(fileName);
+	size_t size = strlen(fileName);
+	//printf("test validname size: %d\n", size);
+	if(regex(fileName, "^[a-zA-Z0-9]{1,3}.txt$") == 0)
+		return 0;
+	return 1;
 }
 
-int isValidPassword(char * password){
+int isValidPassword(char * password) {
     
 }
 
@@ -165,5 +223,6 @@ void cleanBuffers(char *buf)
     else
         strtok(buf, "\n");
 }
+
 
 
