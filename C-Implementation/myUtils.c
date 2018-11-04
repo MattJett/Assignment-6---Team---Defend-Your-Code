@@ -40,7 +40,7 @@ void getFname(char * fname, size_t len){
 		else
 			printf("Your name input is invalid please try again! \n");	
 	}
-   strncpy(fname, input, len);	
+   strncpy(fname, dummy, len);	
 }
 
 // TODO: change from dummy to input
@@ -61,6 +61,7 @@ void getLname(char * lname, size_t len){
 		else
 			printf("Your name input is invalid please try again!\n");	
 	}
+   strncpy(lname, dummy, len);	
 }
 
 // TODO: change dummy to input
@@ -81,10 +82,12 @@ long getNum1() {
 		fgets(dummy, (sizeof(dummy)), stdin);
 		cleanBuffers(dummy);
 		//printf("test num size: %d %s\n", (int)strlen(dummy), dummy);
-		if(isValidNum(dummy) == 0)
+		if(isValidNum(dummy) == 0) {
 			valid = 0; // to test, change this to -1
-		else
+			num = atol(dummy);
+		} else {
 			printf("Your name input is invalid please try again! \n");	
+		}
 	}
 	return num;
 }
@@ -101,10 +104,12 @@ long getNum2() {
 		fgets(dummy, (sizeof(dummy)), stdin);
 		cleanBuffers(dummy);
 		//printf("test num size: %d %s\n", (int)strlen(dummy), dummy);
-		if(isValidNum(dummy) == 0)
+		if(isValidNum(dummy) == 0) {
 			valid = 0; // to test, change this to -1
-		else
+			num = atol(dummy);
+		} else {
 			printf("Your name input is invalid please try again! \n");	
+		}
 	}
 	return num;
 }
@@ -112,65 +117,110 @@ long getNum2() {
 // TODO: change dummy to input
 void getInputFile(char * inputName, size_t len) {
 	int valid = -1;
-	char input[52];
+	char input[56];
 	char dummy[8];
 
 	while(valid == -1) {
-		printf("Enter name of text Input file in this directory (Up to 50 characters. Accepting ONLY .txt files AND ONLY letters and numbers)\n");
+		printf("\nEnter name of text Input file in this directory (Up to 50 characters. Accepting ONLY .txt files AND ONLY letters and numbers)\n");
 		printf("Input File: ");
-		fgets(dummy, (sizeof(dummy)), stdin);
-		cleanBuffers(dummy);
-		printf("test inputname size: %d %s\n", (int)strlen(dummy), dummy);
-		if(isValidFileName(dummy) == 0)
+		fgets(input, (sizeof(input)), stdin);
+		cleanBuffers(input);
+		//printf("test inputname size: %d %s\n", (int)strlen(input), input);
+		if(isValidFileName(input) == 0)
 			valid = 0;
 		else
 			printf("Your file name input is invalid please try again!\n");
 	}
+	strncpy(inputName, input, len);
 }
 
-void getOutputFile(char * outputName, size_t len) {
+void getOutputFile(char * outputName, char * inputName, size_t len) {
 	int valid = -1;
-	char input[52];
+	char input[56];
 	char dummy[8];
 
 	while(valid == -1) {
-		printf("Enter name of text Output file in this directory (Up to 50 characters. Accepting ONLY .txt files AND ONLY letters and numbers)\n");
+		printf("Enter name of text Output file thats not the same as input in this directory.\n (Up to 50 characters. Accepting ONLY .txt files AND ONLY letters and numbers)\n");
 		printf("Output File: ");
 		fgets(dummy, (sizeof(dummy)), stdin);
 		cleanBuffers(dummy);
-		printf("test inputname size: %d %s\n", (int)strlen(dummy), dummy);
-		if(isValidFileName(dummy) == 0)
+		//strip(dummy);
+		//printf("test inputname size: %d %s\n", (int)strlen(dummy), dummy);
+		if(isValidFileName(dummy) == 0 && strcmp(dummy, inputName) != 0)
 			valid = 0;
 		else
 			printf("Your file name input is invalid please try again!\n");
 	}
+	strncpy(outputName, dummy, len);
 }
 
 void getPassword() {
+
+	char password[12];
+	char salt[12];
 	int valid = -1;
-	char password[13];
-	char passwordReEnter[13];
-	unsigned char salt[SHA256_BLOCK_SIZE/2];
-	unsigned char hash[SHA256_BLOCK_SIZE];
 
 	while(valid == -1) {
-		printf("Enter password (All letters, numbers, and some special characters are allowed, must be between 6-12 characters in length)\n");
-		printf("Password: ");
-		fgets(password, (sizeof(password)), stdin);
+		printf("\nEnter a password (ONLY Letters and Numbers, Max size of 10)\n");
+		printf("Password #1: ");
+		fgets(password, sizeof(password), stdin);
 		cleanBuffers(password);
-		//printf("test fname size: %d %s\n", (int)strlen(input), input);
+		//printf("test password size: %d %s\n", (int)strlen(password), password);
 		if(isValidPassword(password) == 0)
 			valid = 0;
 		else
-			printf("Your contained either too many or too few characters, or an invalid character!\n");
+			printf("Your password input is invalid please try again!\n");
+	}
+	
+	FILE * file = fopen("password.txt", "w");
+
+	//pwd, 			sizeof(pwd), 	fName, 			sizeof(fName), 	output)
+	//char *pwd, 	int bufSize, 	char *salt, 	int saltSize, 	FILE *errFile)
+
+	// Get Password 1, hashsalt -> combine password + hashsalt. then hash.
+	unsigned char hash [SHA256_BLOCK_SIZE], saltHash [SHA256_BLOCK_SIZE];
+	
+	hashPwd (salt, sizeof(salt), saltHash);
+	char saltedPwd [sizeof(password) + sizeof(saltHash)];
+	strncpy (saltedPwd, password, sizeof(password));
+	strncat (saltedPwd, (char *)saltHash, sizeof(saltHash));
+	hashPwd (saltedPwd, sizeof(password), hash);
+
+	fwrite (hash, sizeof(hash[0]), (sizeof(hash)/sizeof(hash[0])), file);
+	fclose (file);
+
+	// get password 2. hashsalt, combine password + hashalt, then hash. compare from original password
+	// that was written to file. compares. end if the same, else it'll reprompt to input password again.
+	// password two will accept any.
+	file = fopen("password.txt", "r");
+	unsigned char hash2 [SHA256_BLOCK_SIZE], passwordOneHash [SHA256_BLOCK_SIZE], saltHash2 [SHA256_BLOCK_SIZE];
+
+	int ch = fgetc(file), ind = 0;
+	while(ch != EOF) {
+		passwordOneHash[ind++] = (unsigned char) ch;
+		ch = fgetc(file);
 	}
 
-	// generate salt
-	SHA256_CTX ctx;
-	sha256_init(&ctx);
-	// append salt char[] to password[] make new password
-	// hash new password
-	// write salt and hashedpassword to account.txt file
+	valid = -1;
+	while (valid == -1) {
+		printf("Enter the second password (ONLY Letters and Numbers, Max size of 10)\n");
+		printf("Password #2: ");
+		fgets(password, sizeof(password), stdin);
+		cleanBuffers(password);
+
+		hashPwd (salt, sizeof(salt), saltHash2);
+		char saltedPwd2 [sizeof(password) + sizeof(saltHash2)];
+		strncpy (saltedPwd2, password, sizeof(password));
+		strncat (saltedPwd2, (char *)saltHash2, sizeof(saltHash2));
+		hashPwd (saltedPwd2, sizeof(password), hash2);
+		
+		if (strncmp((char *)passwordOneHash, (char *) hash2, sizeof(hash2)) == 0) {
+			//printf("yes\n");
+			valid = 0;
+		}
+	}
+    fclose(file);
+	//printf("worked");
 }
 
 
@@ -185,6 +235,7 @@ int isValidName(char * name) {
 	return 1;
 }
 
+// TODO: change 0-9 will be {1, 10}
 int isValidNum(char * num) {
     strip(num);
 	size_t size = strlen(num);
@@ -199,13 +250,19 @@ int isValidFileName(char * fileName) {
 	strip(fileName);
 	size_t size = strlen(fileName);
 	//printf("test validname size: %d\n", size);
-	if(regex(fileName, "^[a-zA-Z0-9]{1,3}.txt$") == 0)
+	if((regex(fileName, "^[a-zA-Z0-9]{1,50}.txt$") == 0) && strcasestr(fileName, "password.txt") == NULL )
 		return 0;
 	return 1;
 }
 
+// TODO: Change this to 1-10
 int isValidPassword(char * password) {
-    
+    strip(password);
+	size_t size = strlen(password);
+	printf("valid password size: %d %s\n", (int)strlen(password), password);
+	if(regex(password, "^[a-zA-Z0-9]{1,3}$") == 0)
+		return 0;
+	return 1;
 }
 
 // Modified by using https://stackoverflow.com/questions/1085083/regular-expressions-in-c-examples
@@ -224,5 +281,10 @@ void cleanBuffers(char *buf)
         strtok(buf, "\n");
 }
 
-
+void hashPwd(char *pwd, int bufSize, unsigned char *hash) {
+    SHA256_CTX ctx;
+    sha256_init(&ctx);
+    sha256_update(&ctx, (unsigned char*) pwd, bufSize);
+    sha256_final(&ctx, hash);
+}
 

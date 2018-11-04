@@ -1,16 +1,15 @@
 #ifndef MYUTILS_H
 #define MYUTILS_H
 #define _XOPEN_SOURCE
-#endif
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <regex.h>
 #include <unistd.h>
-//#include <crypt.h>
-#include <Wincrypt.h>
-#include <windows.h>
+#include <crypt.h>
 #include <time.h>
+#include <sys/wait.h>
 #include "sha256.h"
 
 void strip(char * array);
@@ -23,7 +22,7 @@ long getNum1();
 long getNum2();
 
 void getInputFile(char * inputName, size_t len);
-void getOutputFile(char * outputName, size_t len);
+void getOutputFile(char * outputName, char * inputName, size_t len);
 
 void getPassword();
 
@@ -34,3 +33,5 @@ int isValidFileName(char * fileName);
 int isValidPassword(char * password);
 int regex(char * string, char * test);
 void cleanBuffers(char * buf);
+void hashPwd(char *pwd, int bufSize, unsigned char *hash);
+#endif
