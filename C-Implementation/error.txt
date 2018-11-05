@@ -1,0 +1,10 @@
+ERROR LOG
+Your name input is invalid in getting getFname(char * fname, size_t len) 
+Your name input is invalid in getting getLname(char * fname, size_t len) 
+invalid input for getNum1() 
+invalid input for getNum1() 
+input file to read is invalid in getInputFile(char * inputName, size_t len) 
+input file to read is invalid in getInputFile(char * inputName, size_t len) 
+output file to write is invalid in getOutputFile(char * outputName, char * inputName, size_t len) 
+2nd password does not match getPassword() 
+2nd password does not match getPassword() 

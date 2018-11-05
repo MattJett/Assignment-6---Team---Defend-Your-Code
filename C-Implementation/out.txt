@@ -1,0 +1,8 @@
+Name: auduong, hung
+Sum: 24
+Product: 144
+a b c
+123
+z
+y
+x
