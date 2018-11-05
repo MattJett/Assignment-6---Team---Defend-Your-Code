@@ -4,7 +4,7 @@ void strip(char * array) {
 	if(array == NULL) {
 			perror("array is null");
 			exit(-99);
-	}// end if
+	}
 
 	int len = strlen(array), x = 0;
    
@@ -15,76 +15,63 @@ void strip(char * array) {
 		 array[x] = '\0';
 	  x++;
 
-	}// end while
-   
-}// end strip
-
+	}
+}
 
 //User Inputs
-// TODO: change from dummy to input
 // dummy is 5, expect string 1-3. last character is for \n. 2nd to last character is to test if its over 3.
 // 1234 => last character is \n, then its just 1234 and 2nd to last shows 4 is extra digit so it fails.
 void getFname(char * fname, size_t len){
 	int valid = -1;
 	char input[52];
-	char dummy[5];
 	
 	while(valid == -1) {
 		printf("Enter First name (Between 1 to 50 characters. ONLY accepting letters)\n");
 		printf("First Name: ");
-		fgets(dummy, (sizeof(dummy)), stdin);
-		cleanBuffers(dummy);
-		//printf("test fname size: %d %s\n", (int)strlen(dummy), dummy);
-		if(isValidName(dummy) == 0)
+		fgets(input, (sizeof(input)), stdin);
+		cleanBuffers(input);
+		if(isValidName(input) == 0)
 			valid = 0; // to test, change this to -1
 		else
 			printf("Your name input is invalid please try again! \n");	
 	}
-   strncpy(fname, dummy, len);	
+   strncpy(fname, input, len);	
 }
 
-// TODO: change from dummy to input
 // also do we need to flush stdin?
 void getLname(char * lname, size_t len){
     int valid = -1;
 	char input[52];
-	char dummy[5];
 	
 	while(valid == -1) {
 		printf("Enter Last name (Up to 50 characters. ONLY accepting letters)\n");
 		printf("Last Name: ");
-		fgets(dummy, (sizeof(dummy)), stdin);
-		cleanBuffers(dummy);
-		//printf("test fname size: %d %s\n", (int)strlen(dummy), dummy);
-		if(isValidName(dummy) == 0)
+		fgets(input, (sizeof(input)), stdin);
+		cleanBuffers(input);
+		if(isValidName(input) == 0)
 			valid = 0;
 		else
 			printf("Your name input is invalid please try again!\n");	
 	}
-   strncpy(lname, dummy, len);	
+   strncpy(lname, input, len);	
 }
 
-// TODO: change dummy to input
-// TODO: 000000000000000000001 should just convert to 1??? at this point sake of time, dont really care too much unelss
-//		wants to tackkel it.
-
-// wants 3 digits. +1 to check minus sign. +1 for \n. +1 for both minus and \n
-//	hard to conceptualize but test it around it maeks sense 
+// TODO: 000000000000000000001 should just convert to 1??? at this point sake of time, dont really care too much...
+//wants 3 digits. +1 to check minus sign. +1 for \n. +1 for both minus and \n
+//hard to conceptualize but test it around it makes sense.
 long getNum1() {
 	int valid = -1;
 	long num = 0;
 	char input[15];
-	char dummy[6];
 	
 	while(valid == -1) {
 		printf("\nEnter First Integer (Only digits between -2147483648 to 2147483647)\n");
 		printf("Num1: ");
-		fgets(dummy, (sizeof(dummy)), stdin);
-		cleanBuffers(dummy);
-		//printf("test num size: %d %s\n", (int)strlen(dummy), dummy);
-		if(isValidNum(dummy) == 0) {
+		fgets(input, (sizeof(input)), stdin);
+		cleanBuffers(input);
+		if(isValidNum(input) == 0) {
 			valid = 0; // to test, change this to -1
-			num = atol(dummy);
+			num = atol(input);
 		} else {
 			printf("Your name input is invalid please try again! \n");	
 		}
@@ -96,17 +83,15 @@ long getNum2() {
     int valid = -1;
 	long num = 0;
 	char input[15];
-	char dummy[6];
 	
 	while(valid == -1) {
 		printf("Enter Second Integer (Only digits between -2147483648 to 2147483647)\n");
 		printf("Num2: ");
-		fgets(dummy, (sizeof(dummy)), stdin);
-		cleanBuffers(dummy);
-		//printf("test num size: %d %s\n", (int)strlen(dummy), dummy);
-		if(isValidNum(dummy) == 0) {
+		fgets(input, (sizeof(input)), stdin);
+		cleanBuffers(input);
+		if(isValidNum(input) == 0) {
 			valid = 0; // to test, change this to -1
-			num = atol(dummy);
+			num = atol(input);
 		} else {
 			printf("Your name input is invalid please try again! \n");	
 		}
@@ -114,48 +99,40 @@ long getNum2() {
 	return num;
 }
 
-// TODO: change dummy to input
-void getInputFile(char * inputName, size_t len) {
-	int valid = -1;
+void getInputFile(FILE * file, char * name) {
 	char input[56];
-	char dummy[8];
 
-	while(valid == -1) {
+	printf("\nEnter name of text Input file in this directory (Name of file (ignoring extension) must be no larger than 50 characters. Accepting ONLY .txt files AND ONLY letters and numbers.)\n");
+	printf("Input File: ");
+	fgets(input, (sizeof(input)), stdin);
+	cleanBuffers(input);
+	while ((file = fileValidation(input, sizeof(input), 0)) == NULL)
+	{
 		printf("\nEnter name of text Input file in this directory (Up to 50 characters. Accepting ONLY .txt files AND ONLY letters and numbers)\n");
 		printf("Input File: ");
 		fgets(input, (sizeof(input)), stdin);
 		cleanBuffers(input);
-		//printf("test inputname size: %d %s\n", (int)strlen(input), input);
-		if(isValidFileName(input) == 0)
-			valid = 0;
-		else
-			printf("Your file name input is invalid please try again!\n");
 	}
-	strncpy(inputName, input, len);
 }
 
-void getOutputFile(char * outputName, char * inputName, size_t len) {
-	int valid = -1;
+void getOutputFile(FILE * writeToFile, char * writeFileName, char * readFileName) {
 	char input[56];
-	char dummy[8];
 
-	while(valid == -1) {
-		printf("Enter name of text Output file thats not the same as input in this directory.\n (Up to 50 characters. Accepting ONLY .txt files AND ONLY letters and numbers)\n");
-		printf("Output File: ");
-		fgets(dummy, (sizeof(dummy)), stdin);
-		cleanBuffers(dummy);
-		//strip(dummy);
-		//printf("test inputname size: %d %s\n", (int)strlen(dummy), dummy);
-		if(isValidFileName(dummy) == 0 && strcmp(dummy, inputName) != 0)
-			valid = 0;
-		else
-			printf("Your file name input is invalid please try again!\n");
+	printf("Enter name of text Output file in this directory thats not the same as the entered input file name.\n (Name of file (ignoring extension) must be no larger than 50 characters. Accepting ONLY .txt files AND ONLY letters and numbers.)\n");
+	printf("Output File: ");
+	fgets(input, (sizeof(input)), stdin);
+	cleanBuffers(input);
+
+	while ((writeToFile = fileValidation(input, sizeof(input), 1) == NULL) && (strcmp(input, readFileName) != 0))
+	{
+		printf("\nEnter name of text Input file in this directory (Up to 50 characters. Accepting ONLY .txt files AND ONLY letters and numbers)\n");
+		printf("Input File: ");
+		fgets(input, (sizeof(input)), stdin);
+		cleanBuffers(input);
 	}
-	strncpy(outputName, dummy, len);
 }
 
 void getPassword() {
-
 	char password[12];
 	char salt[12];
 	int valid = -1;
@@ -165,7 +142,6 @@ void getPassword() {
 		printf("Password #1: ");
 		fgets(password, sizeof(password), stdin);
 		cleanBuffers(password);
-		//printf("test password size: %d %s\n", (int)strlen(password), password);
 		if(isValidPassword(password) == 0)
 			valid = 0;
 		else
@@ -225,44 +201,51 @@ void getPassword() {
 
 
 // Validation
-// TODO: change range to 1-50
 int isValidName(char * name) {
 	strip(name);
     size_t size = strlen(name);
-	//printf("test validname size: %d\n", size);
-	if(regex(name,"^[a-zA-Z]{1,3}$") == 0)
+	if(regex(name,"^[a-zA-Z]{1,50}$") == 0)
 		return 0;
 	return 1;
 }
 
-// TODO: change 0-9 will be {1, 10}
 int isValidNum(char * num) {
     strip(num);
 	size_t size = strlen(num);
-	//printf("test number size: %d %s\n", size, num);
-	if(regex(num,"^[\\-]?([0-9]{1,3})$") == 0)
+	if(regex(num,"^[\\-]?([0-9]{1,10})$") == 0)
 		return 0;
 	return 1;
 }
 
-// TODO: change range to 1-54
-int isValidFileName(char * fileName) {
-	strip(fileName);
-	size_t size = strlen(fileName);
-	//printf("test validname size: %d\n", size);
-	if((regex(fileName, "^[a-zA-Z0-9]{1,50}.txt$") == 0) && strcasestr(fileName, "password.txt") == NULL )
-		return 0;
-	return 1;
-}
-
-// TODO: Change this to 1-10
 int isValidPassword(char * password) {
     strip(password);
 	size_t size = strlen(password);
 	printf("valid password size: %d %s\n", (int)strlen(password), password);
-	if(regex(password, "^[a-zA-Z0-9]{1,3}$") == 0)
+	if(regex(password, "^[a-zA-Z0-9]{1,10}$") == 0)
 		return 0;
 	return 1;
+}
+
+// Modified by using https://wiki.sei.cmu.edu/confluence/display/c/FIO03-C.+Do+not+make+assumptions+about+fopen%28%29+and+file+creation
+FILE * fileValidation(char * name, size_t len, int isWritable) {
+	FILE * file;
+	char * fileType;
+	strip(name);
+	if((regex(name, "^[a-zA-Z0-9]{1,54}.txt$") == 0) && strcasestr(name, "password.txt") == NULL)
+	{
+		if(isWritable == 0)
+			fileType = "r";
+		else
+			fileType = "w";
+
+		if(fopen_s(&file, name, fileType) != 0)
+		{
+			file = NULL;
+			printf("NOTICE: File must be in the same directory as this program's executable.\n");
+        	return file;
+		}
+	}
+	return file;
 }
 
 // Modified by using https://stackoverflow.com/questions/1085083/regular-expressions-in-c-examples
@@ -286,5 +269,28 @@ void hashPwd(char *pwd, int bufSize, unsigned char *hash) {
     sha256_init(&ctx);
     sha256_update(&ctx, (unsigned char*) pwd, bufSize);
     sha256_final(&ctx, hash);
+}
+
+void printToFile(FILE * outputFile, FILE * inputFile, char * lastName, char * firstName, long num1, long num2)
+{
+	long long sumNum = (long long) num1 + num2;
+    long long productNum = (long long) num1 * num2;
+    
+    char sumString[256];
+	char productString[256];
+    _ui64toa(sumNum, sumString, 10);
+    _ui64toa(productNum, productString, 10);
+
+	fprintf(outputFile, "Name: %s, %s\nSum: %s\nProduct: %s\n", lastName, firstName, sumString, productString);
+	char c = fgetc(inputFile);
+    while(c != EOF)
+    {
+        fputc(c, outputFile);
+        c = fgetc(inputFile);
+    }
+    
+    fclose(inputFile);
+    fclose(outputFile);
+	getchar();
 }
 
