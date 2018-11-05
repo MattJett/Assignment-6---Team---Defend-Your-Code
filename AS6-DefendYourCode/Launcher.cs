@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Hung Auduong
+// Matthew Jetts
+// C#-Implementation
+
+using System;
 using System.IO;
 
 /// <include file='docs.xml' path='docs/members[@name="launcher"]/Launcher/*'/>

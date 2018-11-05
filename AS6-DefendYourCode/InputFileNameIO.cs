@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Hung Auduong
+// Matthew Jetts
+// C#-Implementation
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -90,7 +94,7 @@ namespace AS6_DefendYourCode
 		
         private bool TestPrompt(string fileName)
         {
-            return Regex.IsMatch(fileName, @"^[\w!)( -]+\.txt$");
+            return Regex.IsMatch(fileName, @"^[\w!)( -]+\.txt$") && !fileName.Contains("error.txt") && !fileName.Contains("account.txt") ;
         }
     }
 }

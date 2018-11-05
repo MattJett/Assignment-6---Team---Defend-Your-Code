@@ -1,3 +1,7 @@
+// Hung Auduong
+// Matthew Jetts
+// C-Implementation
+
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>

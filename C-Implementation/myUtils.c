@@ -1,3 +1,7 @@
+// Hung Auduong
+// Matthew Jetts
+// C-Implementation
+
 #include "myUtils.h"
 
 void strip(char * array) {
