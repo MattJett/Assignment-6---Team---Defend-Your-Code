@@ -24,14 +24,13 @@ namespace AS6_DefendYourCode
 
                 Console.Write("\nEnter Output File Name: ");
                 OutputFileName = Console.ReadLine().Trim();
-                if (!TestPrompt(OutputFileName)) throw new Exception("Output file incorrect format.");
+                if (!TestPrompt(OutputFileName) || InputFileName.Equals(OutputFileName)) throw new Exception("Output file incorrect format.");
             }
             catch (Exception e)
             {
                 Console.WriteLine("There was an error in your file input: ");
-                Console.WriteLine(e);
                 Console.WriteLine("Only .txt files in this directory are accepted and only use [A-z0-9 or !)( -] are valid characters to use, example input: Abc9!.txt");
-                Errors.Add("InputFileNameIO - Prompt() " + e.ToString());
+                Errors.Add("InputFileNameIO - Prompt() " );
                 Prompt();
             }
         }

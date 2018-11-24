@@ -34,7 +34,6 @@ namespace AS6_DefendYourCode
             catch (Exception e)
             {
                 Console.WriteLine("There was an error in your name input: ");
-                Console.WriteLine(e);
                 Errors.Add("InputName - Prompt() " + e.ToString());
                 Prompt();
             }

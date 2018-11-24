@@ -85,7 +85,6 @@ namespace AS6_DefendYourCode
 				catch (Exception e)
 				{
 					Console.WriteLine("There was an error in storing your password: ");
-					Console.WriteLine(e);
 					Errors.Add("InputPassword - StorePassword() " + e.ToString());
 				}
 				finally
@@ -109,8 +108,8 @@ namespace AS6_DefendYourCode
 			}
 			catch (Exception e)
 			{
-				Errors.Add("InputPassword - ValidatePassword() " + e.ToString());
-				throw new Exception("Error reading from file: " + e);
+				Errors.Add("InputPassword - ValidatePassword() ");
+				throw new Exception("Error reading from file: ");
 			}
 		}
 

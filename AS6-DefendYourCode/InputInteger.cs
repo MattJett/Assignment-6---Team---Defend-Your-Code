@@ -24,7 +24,6 @@ namespace AS6_DefendYourCode
             catch (Exception e)
             {
                 Console.WriteLine("There was an error in your integer input: ");
-                Console.WriteLine(e);
                 Errors.Add("InputInteger - Prompt() " + e.ToString());
                 Prompt();
             }
