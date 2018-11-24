@@ -2,6 +2,9 @@
 Team members: Mathew Jetts, Hung Auduong
 Shortcomings: None that we could think of.
 
+Email: 	hauduong@eagles.ewu.edu
+	mJhett
+
 Part 1:
     Part one is written in .Net Core and should be able to run on all platform.
     Run the code on visual studio.
