@@ -1,0 +1,9 @@
+InputInteger - Prompt() System.FormatException: The value could not be parsed.
+   at System.Numerics.BigNumber.ParseBigInteger(ReadOnlySpan`1 value, NumberStyles style, NumberFormatInfo info)
+   at System.Numerics.BigNumber.ParseBigInteger(String value, NumberStyles style, NumberFormatInfo info)
+   at System.Numerics.BigInteger.Parse(String value)
+   at AS6_DefendYourCode.InputInteger.Prompt() in D:\Github\Assignment-6---Team---Defend-Your-Code\AS6-DefendYourCode\InputInteger.cs:line 20
+InputFileNameIO - Prompt() System.Exception: Input file incorrect format.
+   at AS6_DefendYourCode.InputFileNameIO.Prompt() in D:\Github\Assignment-6---Team---Defend-Your-Code\AS6-DefendYourCode\InputFileNameIO.cs:line 25
+InputFileNameIO - Prompt() System.Exception: Output file incorrect format.
+   at AS6_DefendYourCode.InputFileNameIO.Prompt() in D:\Github\Assignment-6---Team---Defend-Your-Code\AS6-DefendYourCode\InputFileNameIO.cs:line 28

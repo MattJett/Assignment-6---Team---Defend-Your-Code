@@ -1,3 +1,7 @@
+// Hung Auduong
+// Matthew Jetts
+// C-Implementation
+
 #ifndef MYUTILS_H
 #define MYUTILS_H
 #define _XOPEN_SOURCE

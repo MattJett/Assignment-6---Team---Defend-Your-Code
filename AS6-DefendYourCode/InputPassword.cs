@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Hung Auduong
+// Matthew Jetts
+// C#-Implementation
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
