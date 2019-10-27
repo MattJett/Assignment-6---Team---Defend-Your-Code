@@ -2,8 +2,7 @@
 **Team members:** Mathew Jett, Hung Auduong<br>
 **Shortcomings:** None that we could think of.<br>
 
-**Email:** 	hauduong@eagles.ewu.edu<br>
-	matthew.jett@eagles.ewu.edu
+**Email:** 	hauduong@eagles.ewu.edu, matthew.jett@eagles.ewu.edu
 
 ### Part 1:
     Part one is written in .Net Core and should be able to run on all platform.
