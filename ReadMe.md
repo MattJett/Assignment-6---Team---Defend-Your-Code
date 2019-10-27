@@ -1,8 +1,8 @@
 # Defend Your Code
-*Team members:* Mathew Jett, Hung Auduong<br>
-*Shortcomings:* None that we could think of.<br>
+**Team members:** Mathew Jett, Hung Auduong<br>
+**Shortcomings:** None that we could think of.<br>
 
-*Email:* 	hauduong@eagles.ewu.edu
+**Email:** 	hauduong@eagles.ewu.edu
 	matthew.jett@eagles.ewu.edu
 
 ### Part 1:
