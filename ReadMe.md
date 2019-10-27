@@ -1,11 +1,11 @@
---- Defend your Code ---
-Team members: Mathew Jetts, Hung Auduong
-Shortcomings: None that we could think of.
+# Defend Your Code
+*Team members:* Mathew Jett, Hung Auduong<br>
+*Shortcomings:* None that we could think of.<br>
 
-Email: 	hauduong@eagles.ewu.edu
-	mJhett
+*Email:* 	hauduong@eagles.ewu.edu
+	matthew.jett@eagles.ewu.edu
 
-Part 1:
+### Part 1:
     Part one is written in .Net Core and should be able to run on all platform.
     Run the code on visual studio.
     If there are any errors in the input, it'll output the error with the 
@@ -17,7 +17,7 @@ Part 1:
         file input
         password
 
-Part 2:
+### Part 2:
     Part 2 is written in C with linux environment
     
     gcc (Ubuntu 5.4.0-6ubuntu1~16.04.10) 5.4.0 20160609
